@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spark — Ignite Your Career</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="theme.js"></script>
+  <script src="loader.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top spark-nav">
+    <div class="container">
+      <a class="navbar-brand spark-brand d-flex align-items-center gap-2" href="#">
+          <img src="logo.png" alt="Spark" class="spark-logo" height="26" id="nav-logo"/>
+          <span class="brand-text">Spark</span>
+        </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav align-items-center gap-2 gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#careers">Careers</a></li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-sm px-4" data-bs-toggle="modal" data-bs-target="#authModal" id="signin-nav">Sign in</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn spark-btn-primary btn-sm px-4" data-bs-toggle="modal" data-bs-target="#authModal" id="signup-nav">Get started</button>
+          </li>
+        </ul>
+      </div>
+      <!-- THEME TOGGLE — always visible, far right -->
+      <button class="theme-toggle ms-3" id="theme-toggle-btn" title="Toggle theme" aria-label="Toggle light/dark mode">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section" id="home">
+    <!-- layered background -->
+    <div class="hero-mesh"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-glow-3"></div>
+
+    <div class="container position-relative" style="z-index:2;">
+      <div class="row align-items-center min-vh-100 py-5 gy-5">
+
+        <!-- LEFT -->
+        <div class="col-lg-6 pt-5">
+
+          <!-- pill badge -->
+          <div class="hero-pill mb-4">
+            <span class="hero-pill-dot"></span>
+            AI-Powered Career Discovery
+          </div>
+
+          <!-- headline -->
+          <h1 class="hero-title mb-3">
+            Find the career<br/>
+            <span class="hero-gradient-text">you were built for.</span>
+          </h1>
+
+          <!-- subline -->
+          <p class="hero-sub mb-5">
+            Answer a few smart questions. Get matched to careers that fit your personality, strengths and ambitions — with real salary data and a step-by-step roadmap.
+          </p>
+
+          <!-- CTA row -->
+          <div class="d-flex flex-wrap gap-3 mb-5">
+            <button class="hero-cta-primary" data-bs-toggle="modal" data-bs-target="#authModal">
+              Get started free
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <a href="#how" class="hero-cta-ghost">How it works</a>
+          </div>
+
+          <!-- stats row -->
+          <div class="hero-stats-row">
+            <div class="hero-stat">
+              <div class="hero-stat-num">50+</div>
+              <div class="hero-stat-label">Career paths</div>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">20</div>
+              <div class="hero-stat-label">Smart questions</div>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">3 min</div>
+              <div class="hero-stat-label">To your results</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT — floating cards -->
+        <div class="col-lg-6 d-none d-lg-block position-relative">
+          <div class="float-cards">
+            <div class="fcard fcard-1 d-flex align-items-center gap-3">
+              <div class="fcard-icon-wrap fcard-icon-indigo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fcard-title">UX Designer</div>
+                <div class="fcard-salary">₹8–18 LPA</div>
+              </div>
+              <div class="fcard-match fcard-match-high">98%</div>
+            </div>
+            <div class="fcard fcard-2 d-flex align-items-center gap-3">
+              <div class="fcard-icon-wrap fcard-icon-violet">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fcard-title">Data Scientist</div>
+                <div class="fcard-salary">₹12–30 LPA</div>
+              </div>
+              <div class="fcard-match fcard-match-high">95%</div>
+            </div>
+            <div class="fcard fcard-3 d-flex align-items-center gap-3">
+              <div class="fcard-icon-wrap fcard-icon-teal">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fcard-title">Product Manager</div>
+                <div class="fcard-salary">₹15–35 LPA</div>
+              </div>
+              <div class="fcard-match fcard-match-mid">91%</div>
+            </div>
+            <div class="fcard fcard-4 d-flex align-items-center gap-3">
+              <div class="fcard-icon-wrap fcard-icon-orange">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fcard-title">Electrician</div>
+                <div class="fcard-salary">₹4–12 LPA</div>
+              </div>
+              <div class="fcard-match fcard-match-mid">88%</div>
+            </div>
+            <div class="hero-orb orb-a"></div>
+            <div class="hero-orb orb-b"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="py-6" id="how">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="badge spark-badge mb-3 px-3 py-2">Process</span>
+        <h2 class="section-title">Three steps to clarity</h2>
+        <p class="text-secondary mx-auto" style="max-width:480px;">No fluff. No endless forms. Just smart questions and a career roadmap built for you.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="step-card h-100">
+            <div class="step-number">01</div>
+            <div class="step-icon-wrap mb-3"><i class="bi bi-person-fill fs-3"></i></div>
+            <h5 class="fw-semibold mb-2">Tell us about yourself</h5>
+            <p class="text-secondary mb-0">Share your interests, education level, strengths, and the lifestyle you're aiming for.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-card step-card--active h-100">
+            <div class="step-number">02</div>
+            <div class="step-icon-wrap mb-3"><i class="bi bi-lightning-fill fs-3"></i></div>
+            <h5 class="fw-semibold mb-2">Answer the quiz</h5>
+            <p class="text-secondary mb-0">AI-guided questions dive into your personality, values, risk appetite, and working style.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-card h-100">
+            <div class="step-number">03</div>
+            <div class="step-icon-wrap mb-3"><i class="bi bi-map-fill fs-3"></i></div>
+            <h5 class="fw-semibold mb-2">Get your roadmap</h5>
+            <p class="text-secondary mb-0">Matched careers, salary ranges, step-by-step paths, and a downloadable PDF report — all yours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREERS PREVIEW -->
+  <section class="py-6 careers-section" id="careers">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="badge spark-badge mb-3 px-3 py-2">Explore</span>
+        <h2 class="section-title">Careers we map</h2>
+        <p class="text-secondary">Sign up to see your personal matches with salary data and roadmaps.</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">🧑‍💻 Software Engineer</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">🎨 UX / UI Designer</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">📊 Data Scientist</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">🏥 Doctor / Surgeon</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">⚖️ Legal Analyst</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">🎬 Media Producer</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">🏗️ Civil Engineer</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="career-pill" data-bs-toggle="modal" data-bs-target="#authModal">📈 Financial Analyst</div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <button class="btn spark-btn-primary btn-lg px-5" data-bs-toggle="modal" data-bs-target="#authModal">
+          Discover your match <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="spark-footer">
+    <div class="container">
+
+      <!-- TOP DIVIDER LINE -->
+      <div class="footer-top-line"></div>
+
+      <!-- MAIN GRID -->
+      <div class="footer-grid">
+
+        <!-- COL 1 — ABOUT -->
+        <div class="footer-col footer-col-about">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Spark" class="spark-logo" height="24"/>
+            <span class="brand-text">Spark</span>
+          </div>
+          <p class="footer-about">
+            Spark was created with passion and determination to help students who feel lost while choosing their careers. Our goal is to provide guidance, clarity, and confidence so every student can discover the right path for their future.
+          </p>
+          <!-- SOCIAL ICONS -->
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/_sad__ik_" target="_blank" class="footer-social-btn" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sadik-sk-639922325/" target="_blank" class="footer-social-btn" title="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://github.com/SaDik4299" target="_blank" class="footer-social-btn" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+            <a href="https://x.com/sk_sadik98517" target="_blank" class="footer-social-btn" title="X / Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- COL 2 — QUICK LINKS -->
+        <div class="footer-col">
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#" data-bs-toggle="modal" data-bs-target="#authModal">Take the quiz</a></li>
+            <li><a href="profile.html">My profile</a></li>
+          </ul>
+        </div>
+
+        <!-- COL 3 — FEATURES -->
+        <div class="footer-col">
+          <div class="footer-col-title">Features</div>
+          <ul class="footer-links">
+            <li><a href="#">AI career matching</a></li>
+            <li><a href="#">Salary insights</a></li>
+            <li><a href="#">Career roadmaps</a></li>
+            <li><a href="#">PDF reports</a></li>
+            <li><a href="#">Vocational paths</a></li>
+          </ul>
+        </div>
+
+        <!-- COL 4 — CONTACT -->
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:sadik.sk4299@gmail.com">sadik.sk4299@gmail.com</a>
+          </div>
+          <div class="footer-tagline">
+            "Every great career starts with a single spark."
+          </div>
+          <button class="footer-cta" data-bs-toggle="modal" data-bs-target="#authModal">
+            Get started free
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM BAR -->
+      <div class="footer-bottom">
+        <span class="footer-copy">Spark Inc. &copy; 2024 Spark. All rights reserved.</span>
+        <span class="footer-made">Made with
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="color:#FF6B2B;margin:0 3px;vertical-align:middle"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+          for students everywhere
+        </span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content spark-modal position-relative">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- LOGIN -->
+        <div id="panel-login">
+          <div class="modal-body p-5">
+            <div class="text-center mb-4">
+              <div class="modal-brand mb-1"><img src="logo.png" class="modal-logo" alt="Spark"/></div>
+              <div class="modal-brand-name mb-3">Spark</div>
+              <h4 class="fw-bold">Welcome back</h4>
+              <p class="text-secondary small">Sign in to continue your journey</p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-secondary">Email address</label>
+              <input type="email" class="form-control spark-input" id="login-email" placeholder="you@example.com"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-secondary">Password</label>
+              <input type="password" class="form-control spark-input" id="login-password" placeholder="••••••••"/>
+            </div>
+            <div class="text-danger small mb-3 min-h-1" id="login-error"></div>
+            <button class="btn spark-btn-primary w-100 py-2 mb-3" id="login-btn">
+              Sign in <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+            <p class="text-center text-secondary small mb-0">
+              Don't have an account? <a href="#" class="spark-link" id="go-signup">Create one</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- SIGNUP -->
+        <div id="panel-signup" class="d-none">
+          <div class="modal-body p-5">
+            <div class="text-center mb-4">
+              <div class="modal-brand mb-1"><img src="logo.png" class="modal-logo" alt="Spark"/></div>
+              <div class="modal-brand-name mb-3">Spark</div>
+              <h4 class="fw-bold">Create your account</h4>
+              <p class="text-secondary small">Start discovering your path today</p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-secondary">Full name</label>
+              <input type="text" class="form-control spark-input" id="signup-name" placeholder="Your name"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-secondary">Email address</label>
+              <input type="email" class="form-control spark-input" id="signup-email" placeholder="you@example.com"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-secondary">Password</label>
+              <input type="password" class="form-control spark-input" id="signup-password" placeholder="Min. 8 characters"/>
+            </div>
+            <div class="text-danger small mb-3" id="signup-error"></div>
+            <button class="btn spark-btn-primary w-100 py-2 mb-3" id="signup-btn">
+              Create account <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+            <p class="text-center text-secondary small mb-0">
+              Already have an account? <a href="#" class="spark-link" id="go-login">Sign in</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spark — Career Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="quiz.css"/>
+  <script src="theme.js"></script>
+  <script src="loader.js"></script>
+</head>
+<body class="quiz-body">
+
+  <canvas id="quiz-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-dark spark-nav fixed-top">
+    <div class="container">
+      <a class="navbar-brand spark-brand d-flex align-items-center gap-2" href="index.html">
+          <img src="logo.png" alt="Spark" class="spark-logo" height="26" id="nav-logo"/>
+          <span class="brand-text">Spark</span>
+        </a>
+      <div class="d-flex align-items-center gap-3">
+        <span class="text-secondary small" id="nav-username"></span>
+        <button class="btn btn-outline-secondary btn-sm" onclick="confirmExit()">
+          <i class="bi bi-x-lg me-1"></i>Exit quiz
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="quiz-main">
+
+    <!-- INTRO SCREEN -->
+    <div class="quiz-screen active" id="screen-intro">
+      <div class="container">
+        <div class="quiz-intro-card">
+          <div class="intro-icon-wrap">
+            <svg class="intro-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+              <circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+              <path d="M40 18 L44 32 L58 32 L47 41 L51 55 L40 46 L29 55 L33 41 L22 32 L36 32 Z"
+                fill="currentColor" opacity="0.9"/>
+            </svg>
+          </div>
+          <h1 class="intro-title">The Career<br/><span class="spark-highlight">Discovery Quiz</span></h1>
+          <p class="intro-sub text-secondary">
+            Answer honestly. There are no right or wrong answers — only <em>yours</em>.
+            The more genuine your responses, the better your matches.
+          </p>
+          <div class="intro-meta-row">
+            <div class="intro-meta-item">
+              <div class="meta-icon"><i class="bi bi-question-circle"></i></div>
+              <div><strong id="intro-q-count">10</strong><span class="text-secondary d-block" style="font-size:0.75rem">questions</span></div>
+            </div>
+            <div class="intro-meta-sep"></div>
+            <div class="intro-meta-item">
+              <div class="meta-icon"><i class="bi bi-clock"></i></div>
+              <div><strong>~3 min</strong><span class="text-secondary d-block" style="font-size:0.75rem">to complete</span></div>
+            </div>
+            <div class="intro-meta-sep"></div>
+            <div class="intro-meta-item">
+              <div class="meta-icon"><i class="bi bi-shield-check"></i></div>
+              <div><strong>Private</strong><span class="text-secondary d-block" style="font-size:0.75rem">only you see this</span></div>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-3 align-items-center mt-4">
+            <button class="btn spark-btn-primary btn-lg px-5 w-100" onclick="startQuiz('medium')">
+              Start — 10 questions <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+            <button class="btn btn-outline-secondary px-5 w-100" onclick="startQuiz('long')">
+              Deep dive — 20 questions <i class="bi bi-chevron-double-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div class="quiz-screen" id="screen-quiz">
+      <div class="container">
+
+        <!-- TOP BAR -->
+        <div class="quiz-topbar">
+          <div class="quiz-counter">
+            <span id="q-current">1</span>
+            <span class="text-secondary mx-1">/</span>
+            <span id="q-total">10</span>
+          </div>
+          <div class="quiz-progress-wrap">
+            <div class="quiz-progress-track">
+              <div class="quiz-progress-fill" id="quiz-progress"></div>
+            </div>
+          </div>
+          <div class="quiz-timer" id="quiz-timer">
+            <i class="bi bi-stopwatch"></i>
+            <span id="timer-display">0:00</span>
+          </div>
+        </div>
+
+        <!-- QUESTION CARD -->
+        <div class="q-card" id="q-card">
+          <div class="q-category" id="q-category">Personality</div>
+          <p class="q-text" id="q-text">Loading question...</p>
+          <div class="q-options" id="q-options"></div>
+        </div>
+
+        <!-- UPGRADE NUDGE (shown at Q10 in long mode) -->
+        <div class="upgrade-nudge d-none" id="upgrade-nudge">
+          <i class="bi bi-stars me-2"></i>
+          You're halfway! The next 10 questions unlock deeper career insights.
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div class="quiz-screen" id="screen-loading">
+      <div class="container">
+        <div class="loading-card">
+          <div class="loading-orbs">
+            <div class="lorb lorb-1"></div>
+            <div class="lorb lorb-2"></div>
+            <div class="lorb lorb-3"></div>
+          </div>
+          <div class="loading-icon">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+              <circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" class="loading-ring-svg"/>
+              <path d="M30 10 L33 22 L46 22 L36 30 L39 42 L30 34 L21 42 L24 30 L14 22 L27 22 Z"
+                fill="currentColor" opacity="0.8"/>
+            </svg>
+          </div>
+          <h3 class="loading-title">Analysing your answers</h3>
+          <div class="loading-steps">
+            <div class="lstep active" id="lstep-1">
+              <div class="lstep-dot"></div>
+              <span>Reading your personality profile</span>
+            </div>
+            <div class="lstep" id="lstep-2">
+              <div class="lstep-dot"></div>
+              <span>Matching to career database</span>
+            </div>
+            <div class="lstep" id="lstep-3">
+              <div class="lstep-dot"></div>
+              <span>Calculating salary ranges</span>
+            </div>
+            <div class="lstep" id="lstep-4">
+              <div class="lstep-dot"></div>
+              <span>Building your roadmap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- EXIT CONFIRM MODAL -->
+  <div class="modal fade" id="exitModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content spark-modal text-center p-4">
+        <div class="mb-3" style="font-size:2rem; opacity:0.7;">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1"/>
+            <path d="M20 10 v12 M20 26 v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h5 class="fw-bold mb-2">Leave the quiz?</h5>
+        <p class="text-secondary small mb-4">Your progress won't be saved.</p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-secondary w-50" data-bs-dismiss="modal">Stay</button>
+          <button class="btn spark-btn-primary w-50" onclick="window.location.href='profile.html'">Leave</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

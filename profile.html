@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spark — Your Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <script src="theme.js"></script>
+  <script src="loader.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="profile.css"/>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark spark-nav fixed-top">
+    <div class="container">
+      <a class="navbar-brand spark-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="logo.png" alt="Spark" class="spark-logo" height="26"/>
+        <span class="brand-text">Spark</span>
+      </a>
+      <div class="d-flex align-items-center gap-3">
+        <span class="text-secondary small" id="nav-user"></span>
+        <button class="btn btn-outline-secondary btn-sm" id="btn-logout">
+          <i class="bi bi-box-arrow-right me-1"></i>Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP PROGRESS BAR -->
+  <div class="top-bar"><div class="top-bar-fill" id="top-bar-fill"></div></div>
+
+  <!-- PAGE -->
+  <div class="page-wrap">
+    <div class="container">
+
+      <!-- STEPPER -->
+      <div class="sp-stepper" id="stepper">
+        <div class="sp-step active" data-n="1">
+          <div class="sp-circle">1</div>
+          <div class="sp-label">About you</div>
+        </div>
+        <div class="sp-line" id="line-1"></div>
+        <div class="sp-step" data-n="2">
+          <div class="sp-circle">2</div>
+          <div class="sp-label">Education</div>
+        </div>
+        <div class="sp-line" id="line-2"></div>
+        <div class="sp-step" data-n="3">
+          <div class="sp-circle">3</div>
+          <div class="sp-label">Interests</div>
+        </div>
+        <div class="sp-line" id="line-3"></div>
+        <div class="sp-step" data-n="4">
+          <div class="sp-circle">4</div>
+          <div class="sp-label">Goals</div>
+        </div>
+      </div>
+
+      <!-- MAIN CARD -->
+      <div class="sp-card" id="main-card">
+
+        <!-- STEP 1 -->
+        <div id="step-1" class="sp-panel">
+          <div class="sp-head">
+            <div class="sp-emoji">👋</div>
+            <h2>Let's start with <span class="spark-highlight">you</span></h2>
+            <p class="sp-sub">Tell us a little about yourself so we can personalise your results.</p>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="sp-label-field">Full name <span class="sp-req">*</span></label>
+              <input type="text" id="p-name" class="sp-input" placeholder="e.g. Arjun Sharma"/>
+            </div>
+            <div class="col-md-6">
+              <label class="sp-label-field">Age <span class="sp-req">*</span></label>
+              <input type="number" id="p-age" class="sp-input" placeholder="e.g. 21" min="13" max="65"/>
+            </div>
+            <div class="col-md-6">
+              <label class="sp-label-field">City <span class="sp-req">*</span></label>
+              <input type="text" id="p-city" class="sp-input" placeholder="e.g. Hyderabad"/>
+            </div>
+            <div class="col-md-6">
+              <label class="sp-label-field">Gender</label>
+              <select id="p-gender" class="sp-input">
+                <option value="">Prefer not to say</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
+          <p class="sp-err" id="err-1"></p>
+          <div class="sp-foot">
+            <button class="sp-btn-primary" onclick="goNext(1)">Continue <i class="bi bi-arrow-right ms-2"></i></button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="step-2" class="sp-panel" style="display:none">
+          <div class="sp-head">
+            <div class="sp-emoji">🎓</div>
+            <h2>Your <span class="spark-highlight">education</span></h2>
+            <p class="sp-sub">Your background helps us match you to realistic paths right now.</p>
+          </div>
+          <label class="sp-label-field mb-2">Highest level completed <span class="sp-req">*</span></label>
+          <div class="sp-edu-grid">
+            <button class="sp-edu-btn" data-val="High School" type="button"><i class="bi bi-book"></i><span>High School</span></button>
+            <button class="sp-edu-btn" data-val="Diploma" type="button"><i class="bi bi-award"></i><span>Diploma</span></button>
+            <button class="sp-edu-btn" data-val="Bachelor's" type="button"><i class="bi bi-mortarboard"></i><span>Bachelor's</span></button>
+            <button class="sp-edu-btn" data-val="Master's" type="button"><i class="bi bi-mortarboard-fill"></i><span>Master's</span></button>
+            <button class="sp-edu-btn" data-val="PhD" type="button"><i class="bi bi-journal-bookmark-fill"></i><span>PhD</span></button>
+            <button class="sp-edu-btn" data-val="Self-taught" type="button"><i class="bi bi-lightbulb"></i><span>Self-taught</span></button>
+          </div>
+          <div class="row g-3 mt-1">
+            <div class="col-md-6">
+              <label class="sp-label-field">Field of study</label>
+              <input type="text" id="p-field" class="sp-input" placeholder="e.g. Computer Science"/>
+            </div>
+            <div class="col-md-6">
+              <label class="sp-label-field">Current status <span class="sp-req">*</span></label>
+              <select id="p-status" class="sp-input">
+                <option value="">Select status</option>
+                <option>Still studying</option>
+                <option>Recently graduated</option>
+                <option>Working professional</option>
+                <option>Looking for first job</option>
+                <option>Career change</option>
+              </select>
+            </div>
+          </div>
+          <p class="sp-err" id="err-2"></p>
+          <div class="sp-foot">
+            <button class="sp-btn-secondary" onclick="goBack(2)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+            <button class="sp-btn-primary" onclick="goNext(2)">Continue <i class="bi bi-arrow-right ms-2"></i></button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="step-3" class="sp-panel" style="display:none">
+          <div class="sp-head">
+            <div class="sp-emoji">🔥</div>
+            <h2>What <span class="spark-highlight">excites</span> you?</h2>
+            <p class="sp-sub">Pick at least 2. Go with your gut.</p>
+          </div>
+          <div class="sp-tags">
+            <button class="sp-tag" data-val="Technology" type="button">Technology</button>
+            <button class="sp-tag" data-val="Design" type="button">Design</button>
+            <button class="sp-tag" data-val="Science" type="button">Science</button>
+            <button class="sp-tag" data-val="Business & Sales" type="button">Business & Sales</button>
+            <button class="sp-tag" data-val="Healthcare" type="button">Healthcare</button>
+            <button class="sp-tag" data-val="Law" type="button">Law</button>
+            <button class="sp-tag" data-val="Writing & Media" type="button">Writing & Media</button>
+            <button class="sp-tag" data-val="Teaching" type="button">Teaching</button>
+            <button class="sp-tag" data-val="Arts & Music" type="button">Arts & Music</button>
+            <button class="sp-tag" data-val="Sports & Fitness" type="button">Sports & Fitness</button>
+            <button class="sp-tag" data-val="Finance" type="button">Finance</button>
+            <button class="sp-tag" data-val="Engineering" type="button">Engineering</button>
+            <button class="sp-tag" data-val="Electrical Work" type="button">Electrical Work</button>
+            <button class="sp-tag" data-val="Carpentry & Woodwork" type="button">Carpentry</button>
+            <button class="sp-tag" data-val="Mechanics & Vehicles" type="button">Mechanics</button>
+            <button class="sp-tag" data-val="Construction & Civil" type="button">Construction</button>
+            <button class="sp-tag" data-val="Driving & Logistics" type="button">Driving & Logistics</button>
+            <button class="sp-tag" data-val="Plumbing & Pipework" type="button">Plumbing</button>
+            <button class="sp-tag" data-val="Cooking & Food" type="button">Cooking & Food</button>
+            <button class="sp-tag" data-val="Agriculture & Farming" type="button">Agriculture</button>
+            <button class="sp-tag" data-val="Beauty & Grooming" type="button">Beauty & Grooming</button>
+            <button class="sp-tag" data-val="Retail & Customer Service" type="button">Retail & Service</button>
+          </div>
+          <p class="sp-err" id="err-3"></p>
+          <div class="sp-foot">
+            <button class="sp-btn-secondary" onclick="goBack(3)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+            <button class="sp-btn-primary" onclick="goNext(3)">Continue <i class="bi bi-arrow-right ms-2"></i></button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div id="step-4" class="sp-panel" style="display:none">
+          <div class="sp-head">
+            <div class="sp-emoji">🎯</div>
+            <h2>Your <span class="spark-highlight">priorities</span></h2>
+            <p class="sp-sub">What matters most to you in a career? Pick one.</p>
+          </div>
+          <div class="sp-priority-grid">
+            <button class="sp-priority-btn" data-val="High salary" type="button"><i class="bi bi-currency-rupee"></i><span>High salary</span></button>
+            <button class="sp-priority-btn" data-val="Work-life balance" type="button"><i class="bi bi-heart"></i><span>Work-life balance</span></button>
+            <button class="sp-priority-btn" data-val="Own business" type="button"><i class="bi bi-shop"></i><span>Own business</span></button>
+            <button class="sp-priority-btn" data-val="Social impact" type="button"><i class="bi bi-people"></i><span>Social impact</span></button>
+            <button class="sp-priority-btn" data-val="Job security" type="button"><i class="bi bi-shield-check"></i><span>Job security</span></button>
+            <button class="sp-priority-btn" data-val="Mastering a skill" type="button"><i class="bi bi-tools"></i><span>Mastering a skill</span></button>
+            <button class="sp-priority-btn" data-val="Creative freedom" type="button"><i class="bi bi-palette"></i><span>Creative freedom</span></button>
+            <button class="sp-priority-btn" data-val="Growth & learning" type="button"><i class="bi bi-graph-up"></i><span>Growth & learning</span></button>
+            <button class="sp-priority-btn" data-val="Quick daily income" type="button"><i class="bi bi-cash-stack"></i><span>Quick income</span></button>
+          </div>
+          <div class="mt-3">
+            <label class="sp-label-field">Anything else? <span class="text-secondary" style="font-size:0.78rem">(optional)</span></label>
+            <textarea id="p-extra" class="sp-input" rows="3" placeholder="e.g. I want to work remotely, interested in startups..."></textarea>
+          </div>
+          <p class="sp-err" id="err-4"></p>
+          <div class="sp-foot">
+            <button class="sp-btn-secondary" onclick="goBack(4)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+            <button class="sp-btn-primary" onclick="goNext(4)">Start my quiz <i class="bi bi-lightning-fill ms-2"></i></button>
+          </div>
+        </div>
+
+        <!-- DONE -->
+        <div id="step-done" class="sp-panel text-center" style="display:none">
+          <div class="sp-done-ring"><div class="sp-done-inner">⚡</div></div>
+          <h2 class="mt-4">You're all set, <span class="spark-highlight" id="done-name">there</span>!</h2>
+          <p class="sp-sub mt-2 mb-4">Your profile is saved. Time to find your career path.</p>
+          <button class="sp-btn-primary" onclick="window.location.href='quiz.html'">
+            Begin the quiz <i class="bi bi-arrow-right ms-2"></i>
+          </button>
+        </div>
+
+      </div><!-- /sp-card -->
+    </div><!-- /container -->
+  </div><!-- /page-wrap -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="profile.js"></script>
+</body>
+</html>
